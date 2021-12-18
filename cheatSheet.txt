@@ -1,0 +1,93 @@
+============== Database ============== 
+SHOW DATABASES;
+DROP DATABASE <db_name>;
+CREATE DATABASE <db_name>;	
+USE <db_name>;
+
+
+============== Tables ============== 
+SHOW TABLES;
+DROP TABLE <table>;
+DESCRIBE <table>;
+
+CREATE TABLE <table>
+(
+	<col> INT AUTO_INCREMENT,
+    <col> VARCHAR(50) NOT NULL,
+    <col> VARCHAR(50) NULL DEFAULT 'Kadam',
+    PRIMARY KEY( <col> )
+);
+	
+============== ROW Modification ============== 
+INSERT INTO players ( <col>, <col> ) VALUES( <val>, <val> );	// NOT NULL col needed if no default value provided.
+
+We can also give the auto_increment col and its value. However next entry will auto increment from this new value.
+Like ( 1, 2, 3, 33, 34, 100, 101, .... ). Adding duplicate entry is not possible.
+
+DELETE 
+FROM players
+WHERE id = 3;
+
+
+============== SELECT ============== 
+SELECT * FROM <table>;
+SELECT <col>, <col> FROM <table>;
+SELECT ( col_name + 10 ) * 100 AS 'new_col_name' FROM <table>;		// Mathematical operations are also possible
+
+
+============== DISTINCT ==============
+SELECT DISTINCT <col>, <col> FROM <table>;			// NULL is also considered as a distinct value.
+
+
+============== CONCAT ============== 
+SELECT CONCAT( <col>, <col>, ... , <col>) AS <new_col> FROM <table>;
+SELECT CONCAT( <col>, <val> ) AS <new_col> FROM <table>;		// <val> can be string, int ...
+
+If one of the concatinating strings is NULL, then after CAONCAT it becomes NULL.
+
+
+============== WHERE,AND,OR,NOT,IN,BETWEEN,LIKE,NULL ============== 
+SELECT * FROM <table> WHERE <condition>;
+SELECT * FROM <table> WHERE NOT( <condition> AND <condition> OR <condition> );	// Use brackets
+SELECT * FROM <table> WHERE <col> IN ( <val>, <val>, <val> );
+SELECT * FROM <table> WHERE <col> NOT IN ( <val>, <val>, <val> );
+SELECT * FROM <table> WHERE <col> BETWEEN <val> and <val>;
+SELECT * FROM <table> WHERE <col> NOT BETWEEN <val> and <val>;
+SELECT * FROM <table> WHERE <col> IS NULL;
+SELECT * FROM <table> WHERE <col> IS NOT NULL;
+SELECT * FROM <table> WHERE <col> LIKE 'a_k_j%k%';			// _ means one char, % means any number of chars
+SELECT * FROM <table> WHERE <col> NOT LIKE 'a_k_j%k%';
+
+
+============== REGEXP ============== 
+REGEXP
+	^ to denote beginning, $ to represet end
+	| pipe for logical or
+	[abc] match any single expression in the bracket
+	[e-h] match any single expression from a range
+	SELECT * FROM <table_name> WHERE <col_name> REGEXP '^bay|mat$';
+	SELECT * FROM <table_name> WHERE <col_name> REGEXP '^D[a-r]e[abc]h';
+
+
+============== ORDER BY ============== 
+SELECT * FROM <table> WHERE <condition> ORDER BY <col>;
+SELECT * FROM <table> WHERE <condition> ORDER BY <col> DESC;
+SELECT * FROM <table> WHERE <condition> ORDER BY <col> DESC, <col>;
+
+
+============== LIMIT ============== 
+SELECT <col_1>,<col_2>,....,<col_n> FROM <table_name> LIMIT 6		// Print first 6 records
+SELECT <col_1>,<col_2>,....,<col_n> FROM <table_name> LIMIT 6,3 	// Skip first 6 and then display next 3
+
+
+============== ============== 
+
+============== ============== 
+
+============== ============== 
+
+============== ============== 
+
+============== ============== 
+
+============== ============== 
