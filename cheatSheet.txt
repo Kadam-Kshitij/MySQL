@@ -1,6 +1,10 @@
 ============== Basic ==============
 Columns - Fields , Rows - records
 PRIMARY KEY - Uniquely identifies each row in a table. ( UNIQUE + NOT NULL )
+NOT NULL - Column value cannot be null
+UNIQUE - Each column entry should be unique
+DEFAULT - Default value in case a value is not provided while adding the record
+CHECK - To limit certain values to be entered in a column
 
 
 ============== Database ============== 
@@ -37,6 +41,33 @@ Like ( 1, 2, 3, 33, 34, 100, 101, .... ). Adding duplicate entry is not possible
 DELETE FROM <table> WHERE <condition>;
 DELETE FROM <table>; 		// Delete entire table contents
 
+
+============== COLUMN modifications ===============
+ALTER TABLE <table>
+ADD <col> <type>,
+ADD <col> <type>;
+
+ALTER TABLE <table>
+DROP COLUMN <col>;
+
+ALTER TABLE <table>
+MODIFY COLUMN <col>;
+
+
+============== CHECK ===============
+ALTER TABLE <table>
+ADD CONSTRAINT <constraint> CHECK ( <col> < <val> );
+
+ALTER TABLE <table>
+ADD CHECK ( <col> < <val> );
+
+CREATE TABLE <table> (
+	...
+	CONSTRAINT <constraint> CHECK ( <condition> AND <condition> )
+);
+
+ALTER TABLE <table>
+DROP CHECK <constraint_name>
 
 ============== SELECT ============== 
 SELECT * FROM <table>;
