@@ -54,7 +54,7 @@ ALTER TABLE <table>
 MODIFY COLUMN <col>;
 
 
-============== CHECK ===============
+============== CHECK/UPDATE ===============
 ALTER TABLE <table>
 ADD CONSTRAINT <constraint> CHECK ( <col> < <val> );
 
@@ -68,6 +68,10 @@ CREATE TABLE <table> (
 
 ALTER TABLE <table>
 DROP CHECK <constraint_name>
+
+// Same commands for UPDATE
+// UPDATE allows multiple records with NULL value.
+
 
 ============== SELECT ============== 
 SELECT * FROM <table>;
