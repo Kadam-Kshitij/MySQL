@@ -1,3 +1,8 @@
+============== Basic ==============
+Columns - Fields , Rows - records
+PRIMARY KEY - Uniquely identifies each row in a table. ( UNIQUE + NOT NULL )
+
+
 ============== Database ============== 
 SHOW DATABASES;
 DROP DATABASE <db_name>;
@@ -24,9 +29,8 @@ INSERT INTO players ( <col>, <col> ) VALUES( <val>, <val> );	// NOT NULL col nee
 We can also give the auto_increment col and its value. However next entry will auto increment from this new value.
 Like ( 1, 2, 3, 33, 34, 100, 101, .... ). Adding duplicate entry is not possible.
 
-DELETE 
-FROM players
-WHERE id = 3;
+DELETE FROM <table> WHERE <condition>;
+DELETE FROM <table>; 		// Delete entire table contents
 
 
 ============== SELECT ============== 
@@ -57,6 +61,7 @@ SELECT * FROM <table> WHERE <col> IS NULL;
 SELECT * FROM <table> WHERE <col> IS NOT NULL;
 SELECT * FROM <table> WHERE <col> LIKE 'a_k_j%k%';			// _ means one char, % means any number of chars
 SELECT * FROM <table> WHERE <col> NOT LIKE 'a_k_j%k%';
+SELECT * FROM <table> WHERE <col> IN ( SELECT <col> FROM <table> );
 
 
 ============== REGEXP ============== 
@@ -72,7 +77,7 @@ REGEXP
 ============== ORDER BY ============== 
 SELECT * FROM <table> WHERE <condition> ORDER BY <col>;
 SELECT * FROM <table> WHERE <condition> ORDER BY <col> DESC;
-SELECT * FROM <table> WHERE <condition> ORDER BY <col> DESC, <col>;
+SELECT * FROM <table> WHERE <condition> ORDER BY <col> DESC, <col> ASC;	
 
 
 ============== LIMIT ============== 
@@ -80,14 +85,89 @@ SELECT <col_1>,<col_2>,....,<col_n> FROM <table_name> LIMIT 6		// Print first 6 
 SELECT <col_1>,<col_2>,....,<col_n> FROM <table_name> LIMIT 6,3 	// Skip first 6 and then display next 3
 
 
-============== ============== 
+============== MIN(),MAX() ============== 
+SELECT MIN(<col>) FROM <table>;		// Returns one value which is the min of the column even if repeated.
+SELECT MAX(<col>) FROM <table>;
+
+
+============== COUNT(),AVG(),SUM() ============== 
+SELECT COUNT(<col>) FROM <table> WHERE <condition>;		// Count of column with given condition
+SELECT AVG(<col>) FROM <table> WHERE <condition>;		// Gives avg of numeric column
+SELECT SUM(<col>) FROM <table> WHERE <condition>;		// Gives sum of numeric column
+
+
+============== JOINS ============== 
+INNER JOIN - Matching values in both table
+LEFT OUTER JOIN - All left and matching values in right. nulls for right table if no match 
+RIGHT OUTER JOIN - All right and matching values in left
+CROSS JOIN - All records from both tables. Nulls for other table if not match
+
+============== INNER JOIN ==============
+// Each row of first table is compared with each row of other table.
+// If condition is satisfied then the entry is added to the Join table.
+
+SELECT <col>
+FROM <table>
+INNER JOIN <table>
+	ON <condition>;
+INNER JOIN <table>
+	ON <condition>;		
+
+SELECT <col>
+FROM <table>
+INNER JOIN <table>
+	USING( <col> );			// <col> should be present in both tables
+
+
+============== OUTER LEFT/RIGHT JOIN ============== 
+// Left Join gives back all columns of left table even if match  not found. Null entry for right table for 
+// such rows. Similarly right join.
+
+SELECT <col>
+FROM <table>
+LEFT/RIGHT JOIN <table>
+	USING ( <col> );
+
+
+============== CROSS JOIN ============== 
+// Each row of 1st column with each row of second column.
+// If WHERE condition specified, then result same as inner join.
+		
+SELECT *
+FROM <table>
+CROSS JOIN <table>;
+
+============== VIEWS ============== 
+// Virtual table
+
+DROP VIEW <view>;
+SELECT * FROM <view>;
+
+CREATE OR REPLACE VIEW <view> AS
+<some_query>;
+
+
+============== DATE ============== 
+DATE - YYYY-MM-DD
+DATETIME - YYYY-MM-DD HH:MM:SS
+Timestamp - YYYY-MM-DD HH:MM:SS
+YEAR - YYYY or YY
+
+
+============== INDEX ============== 
+// Get data from the table faster.
+// Requires storage and redefining index when new entries are added.
+
+CREATE INDEX <index>
+ON <table> ( <col>, <col> );
+
+DROP INDEX <index>
 
 ============== ============== 
 
 ============== ============== 
 
-============== ============== 
-
-============== ============== 
-
-============== ============== 
+============== COMMENTS ============== 
+-- <comments>
+/* <comment>
+<comment> */
