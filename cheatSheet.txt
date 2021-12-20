@@ -54,7 +54,7 @@ ALTER TABLE <table>
 MODIFY COLUMN <col>;
 
 
-============== CHECK/UPDATE ===============
+============== CHECK/UNIQUE ===============
 ALTER TABLE <table>
 ADD CONSTRAINT <constraint> CHECK ( <col> < <val> );
 
@@ -69,8 +69,13 @@ CREATE TABLE <table> (
 ALTER TABLE <table>
 DROP CHECK <constraint_name>
 
-// Same commands for UPDATE
-// UPDATE allows multiple records with NULL value.
+// Same commands for UNIQUE
+// UNIQUE allows multiple records with NULL value.
+
+
+============== UPDATE ==================
+UPDATE <table> SET <col>=<val> , <col>=<val> WHERE <condition>;
+// Remember to write WHERE clase otherwise entire table is updated.
 
 
 ============== SELECT ============== 
