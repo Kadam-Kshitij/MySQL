@@ -22,6 +22,11 @@ CREATE TABLE <table>
     <col> VARCHAR(50) NULL DEFAULT 'Kadam',
     PRIMARY KEY( <col> )
 );
+
+CREATE TABLE <table> AS
+	SELECT <col>
+	FROM <table>
+	WHERE <condition>;	
 	
 ============== ROW Modification ============== 
 INSERT INTO players ( <col>, <col> ) VALUES( <val>, <val> );	// NOT NULL col needed if no default value provided.
