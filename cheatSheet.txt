@@ -5,6 +5,7 @@ NOT NULL - Column value cannot be null
 UNIQUE - Each column entry should be unique
 DEFAULT - Default value in case a value is not provided while adding the record
 CHECK - To limit certain values to be entered in a column
+A FOREIGN KEY is a field (or collection of fields) in one table, that refers to the PRIMARY KEY in another table.The FOREIGN KEY constraint prevents invalid data from being inserted into the foreign key column, because it has to be one of the values contained in the parent table.
 
 
 ============== Database ============== 
@@ -25,7 +26,9 @@ CREATE TABLE <table>
     <col> VARCHAR(50) NOT NULL,
     <col> VARCHAR(50) NULL DEFAULT 'Kadam',
     PRIMARY KEY( <col> )
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
 );
+
 
 CREATE TABLE <table> AS
 	SELECT <col>
