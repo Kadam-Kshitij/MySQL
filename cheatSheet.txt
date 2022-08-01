@@ -213,7 +213,15 @@ DROP INDEX <index>
 
 ============== ============== 
 
-============== ============== 
+============== Stored Procedures ============== 
+DELIMITER &&;
+create procedure myProcedure ( IN var1 INT )
+BEGIN
+SELECT * from Players where countryID = var1;
+select count( id ) from Players;
+END &&;
+
+call myProcedure(3);
 
 ============== COMMENTS ============== 
 -- <comments>
