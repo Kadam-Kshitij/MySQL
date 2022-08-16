@@ -234,3 +234,6 @@ DDL is Data Definition Language which is used to define data structures. For exa
 
 DML:
 DML is Data Manipulation Language which is used to manipulate data itself. For example: insert, update, delete are instructions in SQL.
+
+
+TRUNCATE TABLE <table_name> // Delete data in a table but not the table.
